@@ -1,11 +1,29 @@
 .App {
   text-align: center;
+  margin: 0 auto;
+  width: 50%
+
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+table {
+  width: 100%;
+}
+
+.operators {
+  display: flex;
+}
+
+.button{
+  border: 1px solid darkgrey;
+  width: 33%;
+  user-select: none;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
