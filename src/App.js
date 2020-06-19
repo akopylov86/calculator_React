@@ -11,17 +11,11 @@ class App extends React.Component{
       this.countRes = this.countRes.bind(this)
       this.addNum = this.addNum.bind(this)
       this.handleOperator = this.handleOperator.bind(this)
-      this.countCurr = this.countCurr.bind(this)
-      this.clearAll = this.clearAll.bind(this)
       this.currLineIsInt = this.currLineIsInt.bind(this)
   }
 
   currLineIsInt(){
     return this.state[this.state.numToFill].lastIndexOf(".") < 0
-  }
-
-  clearAll(){
-
   }
 
   countRes(operation){
@@ -30,20 +24,10 @@ class App extends React.Component{
       this.setState(res)
   }
 
-  countCurr(operation){
-  //     const state = this.state;
-  //     const res = operation.count(state);
-  //     let updatedObj = {lastOperation: operation};
-  //     updatedObj[state.numToFill] = res ;
-  //     this.state.formulaLine.push(state[state.numToFill], operation );
-  //     this.setState(updatedObj);
-  }
-
   addNum(num){
       if (num !== "." || this.currLineIsInt()){
           let updatedObj = {};
           updatedObj[this.state.numToFill] = this.state[this.state.numToFill] + num
-
           this.setState(updatedObj)
       }
   }
