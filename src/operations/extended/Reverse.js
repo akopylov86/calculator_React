@@ -1,8 +1,8 @@
 import Operation from "../Operation";
 
-class Delete extends Operation{
+class Reverse extends Operation{
     constructor() {
-        super("<-");
+        super("+/-");
         this.countNow = true;
         this.result = 0;
     }
@@ -11,14 +11,11 @@ class Delete extends Operation{
         let numToFill = state.numToFill
         let value = state[numToFill]
         if (value) {
-            value = value.substring(0, value.length - 1);
+            value = -1 * value;
             res[numToFill] = value;
         }
-        console.log("delete res", res, state[numToFill])
         return res
     }
-
-
 }
 
-export default Delete
+export default Reverse

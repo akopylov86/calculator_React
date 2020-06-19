@@ -9,11 +9,16 @@ class Equal extends Operation{
     }
 
     count(state) {
-        this.result = state.operation.count(state);
+        state.formulaLine.push(state[state.numToFill], this );
+
+        let countRes = state.operation.count(state);
+        this.result = countRes.num1;
         this.formulaValue = (state.lastOperation && state.lastOperation.countNow)
             ? [this.result, ""]
             : [this.result, state.num2];
-        return this.result;
+
+        console.log("countRes", countRes, "state", state)
+        return countRes;
     }
 
     formulaLine(state, operation){

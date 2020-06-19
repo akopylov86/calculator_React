@@ -6,10 +6,9 @@ class Minus extends Operation{
         this.countNow = false;
         this.result = 0;
     }
-    count(state, resultState) {
+    count(state) {
         this.result = Number(state.num1) - Number(state.num2)
-        Object.assign(resultState,{num1: this.result.toString(), num2: "", operation: null})
-        //return(this.result);
+        return {num1: this.result.toString(), num2: "", operation: null}
     }
 
 

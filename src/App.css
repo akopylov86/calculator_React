@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
   margin: 0 auto;
@@ -14,14 +17,53 @@ table {
   width: 100%;
 }
 
-.operators {
+
+.result{
+  width: 100%;
+  text-align: right;
+  font-size: 25px;
+  padding: 0;
+}
+
+.nums_basic_operators {
   display: flex;
+  width: 100%;
+
+}
+
+.numbers_pad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 75%;
+}
+
+.basic_operators{
+  width: 25%;
+  display: grid;
+}
+
+
+.extended_operators {
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
 }
 
 .button{
   border: 1px solid darkgrey;
-  width: 33%;
+  width: 25%;
+  height: 40px;
   user-select: none;
+  padding: .5em;
+}
+
+.number {
+  width: 33%;
+}
+
+.basic_operator {
+  width: 100%;
 }
 
 

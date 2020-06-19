@@ -9,8 +9,8 @@ function ResultLine({value, defaultValue, formulaLine}) {
                         .join(" ")
     return(
         <div className="result_container">
-            <div className="full_line">{formulaStr}</div>
-            <div className="result"><input value={(defaultValue && !value) ? defaultValue : value} readOnly={true} type="string"/></div>
+            {/*<div className="full_line">{formulaStr}</div>*/}
+            <div className="result"><input className="result" value={(defaultValue && !value) ? defaultValue : value} readOnly={true} type="string"/></div>
         </div>
     )
 }

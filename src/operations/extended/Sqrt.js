@@ -1,8 +1,8 @@
 import Operation from "../Operation";
 
-class x2 extends Operation{
+class Sqrt extends Operation{
     constructor() {
-        super("x²");
+        super("√");
         this.countNow = true;
         this.result = 0;
         this.formulaValue = 0;
@@ -11,7 +11,7 @@ class x2 extends Operation{
         index = index ?? fLine.length-1
         const lastOp = fLine[index]
         if(lastOp && lastOp.countNow){
-           return this.countFormula(fLine, index-1)
+            return this.countFormula(fLine, index-1)
         }
         return this.formulaLine(lastOp)
     }
@@ -20,7 +20,7 @@ class x2 extends Operation{
         let resState = {lastOperation: this};
         let numToFill = state.numToFill
         const a = state[numToFill];
-        this.result = Math.pow(Number(a), 2);
+        this.result = Math.sqrt(Number(a));
         this.formulaValue = a;
         console.log(this.countFormula(state.formulaLine))
         resState[numToFill] = this.result;
@@ -30,10 +30,10 @@ class x2 extends Operation{
 
     formulaLine(i=undefined){
         if (i === undefined)
-            return `(${this.formulaValue})²`
+            return `√(${this.formulaValue})²`
         else
-            return `(${i})²`
+            return `√(${i})`
     }
 }
 
-export default x2
+export default Sqrt

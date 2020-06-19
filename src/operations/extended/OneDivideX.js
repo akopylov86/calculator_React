@@ -1,8 +1,8 @@
 import Operation from "../Operation";
 
-class x2 extends Operation{
+class OneDivideX extends Operation{
     constructor() {
-        super("x²");
+        super("1/x");
         this.countNow = true;
         this.result = 0;
         this.formulaValue = 0;
@@ -11,7 +11,7 @@ class x2 extends Operation{
         index = index ?? fLine.length-1
         const lastOp = fLine[index]
         if(lastOp && lastOp.countNow){
-           return this.countFormula(fLine, index-1)
+            return this.countFormula(fLine, index-1)
         }
         return this.formulaLine(lastOp)
     }
@@ -20,9 +20,8 @@ class x2 extends Operation{
         let resState = {lastOperation: this};
         let numToFill = state.numToFill
         const a = state[numToFill];
-        this.result = Math.pow(Number(a), 2);
+        this.result = 1/Number(a);
         this.formulaValue = a;
-        console.log(this.countFormula(state.formulaLine))
         resState[numToFill] = this.result;
         state.formulaLine.push(state[numToFill], this );
         return resState;
@@ -36,4 +35,4 @@ class x2 extends Operation{
     }
 }
 
-export default x2
+export default OneDivideX
