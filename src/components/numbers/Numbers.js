@@ -21,7 +21,7 @@ function Numbers({addNumber}) {
                     <Number clickHandler={addNumber} num="3"/>
                 </tr>
                 <tr>
-                    <Number clickHandler={addNumber} num="+/-"/>
+                    <Number clickHandler={addNumber} num="00"/>
                     <Number clickHandler={addNumber} num="0"/>
                     <Number clickHandler={addNumber} num="."/>
                 </tr>
