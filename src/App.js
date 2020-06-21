@@ -1,79 +1,47 @@
 import  React from 'react';
 import './App.css';
-import ResultLine from "./components/ResultLine";
-import Numbers from "./components/numbers/Numbers";
-import Operators from "./components/operators/Operators";
+import ResultLine from "./comopnents/ResultLine";
+import Numbers from "./comopnents/numbers/Numbers";
+import Operators from "./comopnents/operators/Operators";
+import Calculator from "./calculator/Calculator";
 
 class App extends React.Component{
   constructor(props) {
       super(props);
-      this.state = {num1: "", num2: "", numToFill: "num1", operation: null, formulaLine: []}
-      this.countRes = this.countRes.bind(this)
-      this.addNum = this.addNum.bind(this)
-      this.handleOperator = this.handleOperator.bind(this)
-      this.currLineIsInt = this.currLineIsInt.bind(this)
-  }
-
-  currLineIsInt(){
-    return this.state[this.state.numToFill].lastIndexOf(".") < 0
-  }
-
-  countRes(operation){
-      const res = operation.count(this.state);
-      //this.setState({num1: res.toString(), num2: "", operation: null})
-      this.setState(res)
-  }
-
-  addNum(num){
-      if (num !== "." || this.currLineIsInt()){
-          let updatedObj = {};
-          updatedObj[this.state.numToFill] = this.state[this.state.numToFill] + num
-          this.setState(updatedObj)
-      }
+      this.state = {res:"", defaultValue:""};
+      this.objCalculator = new Calculator();
+      this.addNum = this.addNum.bind(this);
+      this.handleOperator = this.handleOperator.bind(this);
   }
 
   handleOperator(operator){
-      const formulaLine = this.state.formulaLine;
-      const lastOperation = this.state.lastOperation;
-      const numToFill = this.state.numToFill;
-      const operation = this.state.operation;
+      this.objCalculator.addNumber(this.state.res);
+      const answer = this.objCalculator.handleOperation(operator);
 
-      // let newState = operator.handleClick(this.state)
-      // this.setState(newState)
+      console.log("answer", answer)
+      this.setState({res: "", defaultValue: answer.result})
 
-      if (operator.countNow){
-          // this.countCurr(operator)
-          this.countRes(operator)
-      }else {
-            if(numToFill === "num2"){
-                if(this.state.num2){
-                    this.countRes(this.state.operation);
-                    (!!lastOperation && lastOperation.countNow)
-                        ? formulaLine.push( operator )
-                        : formulaLine.push(this.state.num2, operator );
-                }else if(operation && operation !== operator) {
-                    formulaLine[formulaLine.length - 1] = operator;
-                }
-                this.setState({operation: operator, lastOperation: operator, formulaLine});
 
-            }else{
-                if(operation && operation !== operator)
-                    formulaLine[formulaLine.length - 1] = operator;
-                else if(lastOperation)
-                    formulaLine.push(operator);
-                else
-                    formulaLine.push(this.state.num1, operator );
-                this.setState({operation: operator, lastOperation: operator, numToFill: "num2", formulaLine});
-            }
-      }
-      console.log("operator", operator, this.state)
   }
+
+  addNum(num){
+      const res = this.state.res;
+      if (num !== "." || res.lastIndexOf(".") < 0){
+          // let updatedObj = {};
+          // updatedObj[this.state.numToFill] = this.state[this.state.numToFill] + num
+          this.setState({res: res +num})
+      }
+  }
+
 
   render() {return (
     <div className="App">
-      <div className="result"><ResultLine value={this.state[this.state.numToFill]}
-                       defaultValue={this.state.num1}
-                       formulaLine={this.state.formulaLine}/></div>
+      <div className="result">
+          <ResultLine value={this.state.res}
+                       defaultValue={this.state.defaultValue}
+                       //formulaLine={this.state.formulaLine}
+          />
+      </div>
       <Operators handleOperator={this.handleOperator}
                      type="extended"/>
       <div className="nums_basic_operators">

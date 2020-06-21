@@ -10,6 +10,7 @@ function Operators({handleOperator,type}) {
         <div className={`${type}_operators`}>
             {basicList.map(element => {
                 const obj = new element();
+
                 return (<div className={`button ${type}_operator`} key={obj.sign} onClick={()=>handleOperator(obj)}>{obj.sign}</div>)
             })}
 
