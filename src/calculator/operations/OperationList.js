@@ -10,6 +10,7 @@ import Sqrt from "./extended/Sqrt";
 import OneDivideX from "./extended/OneDivideX";
 import Multiple from "./basic/Mupliple";
 import Divide from "./basic/Divide";
+import Percent from "./extended/Percent";
 
 
 export const OperationList = {
@@ -23,4 +24,6 @@ export const OperationList = {
     [Buttons.CLEAR]: Clear,
     [Buttons.DELETE]: Delete,
     [Buttons.REVERSE]: Reverse,
+    [Buttons.ONEDIVIDEX]: OneDivideX,
+    [Buttons.PERCENT]: Percent,
 }

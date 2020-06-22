@@ -1,7 +1,8 @@
 import * as Buttons from "./Buttons"
 
 export const basicOperators =
-    [Buttons.PLUS,
+    [Buttons.DELETE,
+     Buttons.PLUS,
      Buttons.MINUS,
      Buttons.MULTIPLE,
      Buttons.DIVIDE,
@@ -10,6 +11,7 @@ export const basicOperators =
 export const extendedOperators =
     [Buttons.SQRT,
     Buttons.X2,
-    Buttons.REVERSE,
     Buttons.CLEAR,
-    Buttons.DELETE,]
+    Buttons.REVERSE,
+    Buttons.PERCENT,
+    Buttons.ONEDIVIDEX]

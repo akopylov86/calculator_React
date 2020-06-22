@@ -14,49 +14,69 @@
   pointer-events: none;
 }
 
-table {
-  width: 100%;
+
+
+.result_container{
+  border: 1px solid darkgrey;
 }
-
-
 .result{
   width: 100%;
   text-align: right;
   font-size: 25px;
   padding: 0;
+  border: 0;
 }
 
-.nums_basic_operators {
-  display: flex;
-  width: 100%;
+.full_line{
+  height: 30px;
+  font-size: 20px;
+  color: darkgrey;
+}
 
+
+.buttons{
+  width: 100%;
+  display: flex;
+}
+
+.nums_extended_operators {
+  width: 75%;
 }
 
 .numbers_pad {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  width: 75%;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+}
+
+.extended_operators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  background: #eeebeb;
 }
 
 .basic_operators{
   width: 25%;
   display: grid;
-}
-
-
-.extended_operators {
-  display: flex;
-  flex-wrap: wrap;
-  width:100%;
+  background: #eeebeb;
 }
 
 .button{
   border: 1px solid darkgrey;
-  width: 25%;
+  width: 33%;
   height: 40px;
   user-select: none;
   padding: .5em;
+  transition: background .5s;
+}
+
+.button:hover{
+  background: lightgrey;
 }
 
 .number {

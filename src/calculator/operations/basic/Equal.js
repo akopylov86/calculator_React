@@ -5,24 +5,28 @@ import {doLog} from "../../Loging";
 class Equal extends Operation{
     constructor() {
         super(EQUAL);
-        this.countNow = false;
+        this.countNow = true;
         this.result = 0;
-        this.formulaValue = 0;
+        this.formulaValue = this.sign;
     }
 
-    count(result, input, currOperation) {
-
-         let countRes = currOperation.count(result, input, currOperation);
-
-        doLog("Equal = ", countRes, result, input, currOperation);
-        const answer = this.basicAnswer(countRes);
+    count({result, input, currOperation, inputFormula}) {
+        doLog("Starting Equal = ", result, input,currOperation,  inputFormula);
+        let answer;
+        if(currOperation) {
+            answer = currOperation.count({result, input, inputFormula});
+        }else {
+            answer = this.basicAnswer(result)
+        }
         answer.params.end = true;
-         return answer;
-
+        this.result = answer.result;
+        this.formulaValue = this.doFormulaLine(inputFormula);
+        doLog("Equal = ", answer);
+        return answer;
     }
 
-    formulaLine(state, operation){
-        return `${this.formulaValue[1]} = ${this.formulaValue[0]}`
+    doFormulaLine(inputFormula=""){
+        return inputFormula + ` = ${this.result}`
     }
 
 }

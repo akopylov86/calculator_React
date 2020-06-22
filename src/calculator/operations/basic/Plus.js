@@ -7,16 +7,18 @@ class Plus extends Operation{
         super(PLUS);
         this.countNow = false;
         this.result = 0;
+        this.formulaValue = this.sign;
     }
-    count(num1, num2) {
-        this.result = Number(num1) + Number(num2);
-        doLog("Plus = ", this.result)
-
+    count({result, input, inputFormula}) {
+        this.result = Number(result) + Number(input);
+        this.formulaValue = this.doFormulaLine(inputFormula ? "" : input);
+        this.counted = true;
+        doLog("Plus = ", this.result, inputFormula, input)
         return this.basicAnswer(this.result);
     }
 
-    doFormulaLine(f1, f2){
-        return `${f1} + ${f2}`
+    doFormulaLine(f1){
+        return this.formulaValue + ` ${f1}`
     }
 
 }

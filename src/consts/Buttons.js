@@ -22,6 +22,8 @@ export const EQUAL = "EQUAL";
 export const SQRT = "SQRT";
 export const X2 = "X2";
 export const REVERSE = "REVERSE";
+export const ONEDIVIDEX = "ONEDIVIDEX";
+export const PERCENT = "PERCENT";
 
 
 //Service

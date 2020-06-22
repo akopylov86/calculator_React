@@ -4,52 +4,53 @@ import {doLog} from "./Loging";
 class Calculator {
     constructor() {
         this.result = this.input = null;
-        this.formulaLineHist = [];
-        this.currFormula = [];
+        this.formulaLineAll = [];
+        this.currFormula = "";
         this.currOperation = null;
     }
 
     //Core methods
     handleOperation(op){
         let answer = {};
-
-        console.log("start handle ", op, this.result, this.input)
         const operatorObj = new OperationList[op]();
 
         if(operatorObj.countNow){
             answer = this.countResult(operatorObj);
+            this.currFormula = answer.formula;
             this.input = answer.result;
-            // console.log("countNow", this.result, this.input)
+            this.checkItsFirstInput();
+
         }else {
             if (this.currOperation && this.input) {
-                // console.log("count_in_AddOp")
                 answer = this.countResult(this.currOperation);
                 this.result = answer.result
-                this.input = null;
             }
             this.checkItsFirstInput()
 
             this.currOperation = operatorObj;
             answer.result = this.result
+            this.input = null;
         }
-        this.checkItsFirstInput()
 
-        doLog("Prepared answer", answer)
-        this.checkItsEnd(answer)
+        if(this.checkItsClear(answer)) return answer;
+        this.handleFormula(answer, operatorObj)
         return answer
     }
 
     addNumber(num){
-        console.log("Adding num", num)
         if (num) {
             this.input = num;
-
-            this.currFormula.push(num)
+            if(!this.result) {
+                this.formulaLineAll.push(num);
+            }
         }
     }
 
     countResult(operatorObj){
-        return operatorObj.count(this.result, this.input, this.currOperation);
+        return operatorObj.count({result:this.result,
+                                  input:this.input,
+                                  currOperation:this.currOperation,
+                                  inputFormula: this.currFormula});
     }
 
     //Service methods
@@ -61,14 +62,45 @@ class Calculator {
         }
     }
 
-    checkItsEnd(answer){
-        if(answer.params && answer.params.end){
+    checkItsClear(answer){
+        const itsClear = (answer.params && answer.params.clear)
+        if(itsClear){
+            doLog("is clear!")
             this.result = this.input = null;
-            this.formulaLineHist = [];
-            this.currFormula = [];
+            this.formulaLineAll = [];
+            this.currFormula = "";
             this.currOperation = null;
         }
+        return itsClear
+    }
 
+    handleFormula(answer, operator){
+        const formulaLineAll = this.formulaLineAll;
+        const lastOperation = formulaLineAll[formulaLineAll.length - 1];
+
+        this.currFormula = answer.formula;
+        this.addToFormula(operator, formulaLineAll, lastOperation);
+        answer.formula = this.formulaLineAll;
+    }
+
+    addToFormula(operator, formulaLineAll, lastOperation){
+        if(operator.countNow) {
+            if((lastOperation.countNow) || !isNaN(lastOperation)){
+                console.log("op !cur", operator)
+                formulaLineAll.splice((formulaLineAll.length-1), 1, operator );
+            }else{
+                console.log("op cur")
+                this.formulaLineAll.push(operator);
+            }
+        }else{
+            if(lastOperation.countNow || !isNaN(lastOperation)  || lastOperation.counted ){
+                console.log("!op cur")
+                this.formulaLineAll.push(operator);
+            }else {
+                console.log("!op !cur", this.input, lastOperation)
+                formulaLineAll.splice((formulaLineAll.length-1), 1, operator )
+            }
+        }
     }
 }
 

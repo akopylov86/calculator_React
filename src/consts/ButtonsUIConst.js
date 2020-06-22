@@ -22,6 +22,8 @@ export const ButtonsUIConst = {
     [Buttons.SQRT] : "√",
     [Buttons.X2] : "x²",
     [Buttons.REVERSE] : "+/-",
+    [Buttons.ONEDIVIDEX]: "1/x",
+    [Buttons.PERCENT]: "%",
 
     //Service
     [Buttons.CLEAR] : "C",

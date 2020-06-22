@@ -8,7 +8,7 @@ import Calculator from "./calculator/Calculator";
 class App extends React.Component{
   constructor(props) {
       super(props);
-      this.state = {res:"", defaultValue:""};
+      this.state = {res:"", defaultValue:"", formula:[]};
       this.objCalculator = new Calculator();
       this.addNum = this.addNum.bind(this);
       this.handleOperator = this.handleOperator.bind(this);
@@ -17,9 +17,7 @@ class App extends React.Component{
   handleOperator(operator){
       this.objCalculator.addNumber(this.state.res);
       const answer = this.objCalculator.handleOperation(operator);
-
-      console.log("answer", answer)
-      this.setState({res: "", defaultValue: answer.result})
+      this.setState({res: "", defaultValue: answer.result, formula: answer.formula})
 
 
   }
@@ -27,8 +25,6 @@ class App extends React.Component{
   addNum(num){
       const res = this.state.res;
       if (num !== "." || res.lastIndexOf(".") < 0){
-          // let updatedObj = {};
-          // updatedObj[this.state.numToFill] = this.state[this.state.numToFill] + num
           this.setState({res: res +num})
       }
   }
@@ -36,20 +32,23 @@ class App extends React.Component{
 
   render() {return (
     <div className="App">
-      <div className="result">
+      <div className="result_container">
           <ResultLine value={this.state.res}
-                       defaultValue={this.state.defaultValue}
-                       //formulaLine={this.state.formulaLine}
+                      defaultValue={this.state.defaultValue}
+                      formulaArr={this.state.formula}
           />
       </div>
-      <Operators handleOperator={this.handleOperator}
-                     type="extended"/>
-      <div className="nums_basic_operators">
-          <Numbers addNumber={this.addNum}/>
-          <Operators handleOperator={this.handleOperator}
-                          type="basic"/>
-      </div>
+      <div className="buttons">
+          <div className="nums_extended_operators">
+              <Operators handleOperator={this.handleOperator}
+                         type="extended"/>
+              <Numbers addNumber={this.addNum}/>
 
+          </div>
+
+          <Operators handleOperator={this.handleOperator}
+                     type="basic"/>
+      </div>
     </div>
   );
 }}

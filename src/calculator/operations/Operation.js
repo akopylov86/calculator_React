@@ -3,9 +3,11 @@ import {ButtonsUIConst} from "../../consts/ButtonsUIConst";
 class Operation {
     constructor(button) {
         this.sign = ButtonsUIConst[button];
+        this.button = button;
         this.countNow = false;
         this.result = 0;
-        this.formulaValue = 0;
+        this.formulaValue = "";
+        this.counted = false;
     }
 
     count(){
@@ -13,8 +15,9 @@ class Operation {
 
     };
 
-    basicAnswer(countRes){
-        return {result: countRes, params:{end:false, clear:false}}
+    //No need to implement in child classes.
+    basicAnswer(countRes, formula){
+        return {result: countRes, formula:formula, params:{end:false, clear:false}}
     }
 
     doFormulaLine() {

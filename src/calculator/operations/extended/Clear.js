@@ -8,7 +8,7 @@ class Clear extends Operation{
         this.result = 0;
     }
     count() {
-        return {result:"", params: {clear:true}}
+        return {result:"", formula: [], params: {clear:true}}
     }
 
 

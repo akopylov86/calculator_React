@@ -1,8 +1,9 @@
 import Operation from "../Operation";
+import {doLog} from "../../Loging";
 
 class OneDivideX extends Operation{
     constructor() {
-        super("1/x");
+        super(OneDivideX);
         this.countNow = true;
         this.result = 0;
         this.formulaValue = 0;
@@ -16,22 +17,18 @@ class OneDivideX extends Operation{
         return this.formulaLine(lastOp)
     }
 
-    count(state) {
-        let resState = {lastOperation: this};
-        let numToFill = state.numToFill
-        const a = state[numToFill];
-        this.result = 1/Number(a);
-        this.formulaValue = a;
-        resState[numToFill] = this.result;
-        state.formulaLine.push(state[numToFill], this );
-        return resState;
+    count({result, input, inputFormula}) {
+        doLog("1/X", result, input)
+        input = Number(input ?? result);
+        this.result = 1 / input;
+        return this.basicAnswer(this.result, this.formulaLine(inputFormula || input));
     }
 
     formulaLine(i=undefined){
         if (i === undefined)
-            return `(${this.formulaValue})²`
+            return `(1/${this.formulaValue})`
         else
-            return `(${i})²`
+            return `(1/${i})`
     }
 }
 

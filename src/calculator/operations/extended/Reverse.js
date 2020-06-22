@@ -1,5 +1,6 @@
 import Operation from "../Operation";
 import {REVERSE} from "../../../consts/Buttons";
+import {doLog} from "../../Loging";
 
 class Reverse extends Operation{
     constructor() {
@@ -7,8 +8,9 @@ class Reverse extends Operation{
         this.countNow = true;
         this.result = 0;
     }
-    count(result, input) {
-        input = (input ?? result);
+    count({result, input}) {
+        doLog("Reverse", result, input)
+        input = Number(input ?? result);
         this.result = -1 * input;
         return this.basicAnswer(this.result);
     }
