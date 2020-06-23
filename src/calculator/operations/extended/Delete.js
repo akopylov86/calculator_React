@@ -9,7 +9,7 @@ class Delete extends Operation{
     }
     count({result, input}) {
         input = (input ?? result);
-        this.result = input.substring(0, input.length - 1)
+        this.result = input ? input.substring(0, input.length - 1) : input;
         return this.basicAnswer(this.result);
     }
 

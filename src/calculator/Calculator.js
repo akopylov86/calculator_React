@@ -85,7 +85,7 @@ class Calculator {
 
     addToFormula(operator, formulaLineAll, lastOperation){
         if(operator.countNow) {
-            if((lastOperation.countNow) || !isNaN(lastOperation)){
+            if((lastOperation && lastOperation.countNow) || !isNaN(lastOperation)){
                 console.log("op !cur", operator)
                 formulaLineAll.splice((formulaLineAll.length-1), 1, operator );
             }else{

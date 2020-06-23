@@ -4,9 +4,9 @@
 .App {
   text-align: center;
   margin: 0 auto;
-  width: 50%;
+  width: 30%;
   border-collapse:collapse;
-
+  box-shadow: 17px 27px 72px 1px rgba(0, 0, 0, 0.3);
 }
 
 .App-logo {
@@ -22,14 +22,14 @@
 .result{
   width: 100%;
   text-align: right;
-  font-size: 25px;
+  font-size: 35px;
   padding: 0;
   border: 0;
 }
 
 .full_line{
   height: 30px;
-  font-size: 20px;
+  font-size: 15px;
   color: darkgrey;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .numbers_pad {
-  display: flex;
+  display: -webkit-box;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
@@ -52,7 +52,7 @@
 }
 
 .extended_operators {
-  display: flex;
+  display: -webkit-box;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
@@ -67,8 +67,9 @@
 }
 
 .button{
-  border: 1px solid darkgrey;
-  width: 33%;
+  border-top: 1px solid darkgrey;
+  border-right: 1px solid darkgrey;
+  width: 33.33%;
   height: 40px;
   user-select: none;
   padding: .5em;
@@ -80,11 +81,12 @@
 }
 
 .number {
-  width: 33%;
+  width: 33.33%
 }
 
 .basic_operator {
   width: 100%;
+  border-right: 0;
 }
 
 
