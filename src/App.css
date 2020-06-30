@@ -39,6 +39,20 @@
   display: flex;
 }
 
+.button{
+  border-top: 1px solid darkgrey;
+  border-right: 1px solid darkgrey;
+  width: 33.33%;
+  height: 40px;
+  user-select: none;
+  padding: .5em;
+  transition: background .5s;
+}
+
+.button:hover{
+  background: lightgrey;
+}
+
 .nums_extended_operators {
   width: 75%;
 }
@@ -49,6 +63,7 @@
   justify-content: space-between;
   width: 100%;
   height: fit-content;
+  font-weight: bold;
 }
 
 .extended_operators {
@@ -64,21 +79,10 @@
   width: 25%;
   display: grid;
   background: #eeebeb;
+  font-size: 25px;
 }
 
-.button{
-  border-top: 1px solid darkgrey;
-  border-right: 1px solid darkgrey;
-  width: 33.33%;
-  height: 40px;
-  user-select: none;
-  padding: .5em;
-  transition: background .5s;
-}
 
-.button:hover{
-  background: lightgrey;
-}
 
 .number {
   width: 33.33%
@@ -87,6 +91,7 @@
 .basic_operator {
   width: 100%;
   border-right: 0;
+  padding: 0;
 }
 
 

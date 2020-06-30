@@ -12,8 +12,6 @@ class Delete extends Operation{
         this.result = input ? input.substring(0, input.length - 1) : input;
         return this.basicAnswer(this.result);
     }
-
-
 }
 
 export default Delete
